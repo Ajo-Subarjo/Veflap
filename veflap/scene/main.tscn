@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://blmrdndnlrhx"]
+
+[ext_resource type="Script" uid="uid://71l1iqmrkwvb" path="res://scripts/tower controller.gd" id="1_itxqv"]
+[ext_resource type="Script" uid="uid://b1cuplv88gpt6" path="res://scripts/main.gd" id="1_v0l8b"]
+[ext_resource type="Script" uid="uid://5e5y37k0suey" path="res://scripts/bird.gd" id="3_wp4xf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbweo"]
+size = Vector2(46, 992)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr35p"]
+size = Vector2(40, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3gf8"]
+size = Vector2(75, 75)
+
+[node name="Main" type="Node2D" unique_id=167491325]
+script = ExtResource("1_v0l8b")
+
+[node name="controller" type="Node2D" parent="." unique_id=1043435867]
+position = Vector2(1200, 300)
+script = ExtResource("1_itxqv")
+
+[node name="tower1" type="Node2D" parent="controller" unique_id=2064782768]
+position = Vector2(0, -350)
+
+[node name="ColorRect" type="ColorRect" parent="controller/tower1" unique_id=2122564024]
+offset_top = 500.0
+offset_right = 50.0
+offset_bottom = 1500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="controller/tower1" unique_id=685587293]
+offset_top = -750.0
+offset_right = 50.0
+offset_bottom = 250.0
+metadata/_edit_use_anchors_ = true
+
+[node name="tower_notifier" type="VisibleOnScreenNotifier2D" parent="controller/tower1" unique_id=21611157]
+rect = Rect2(-10, -369, 71, 1480)
+
+[node name="collision_detection" type="Area2D" parent="controller/tower1" unique_id=2144986111]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower1/collision_detection" unique_id=890324267]
+position = Vector2(25, -249)
+shape = SubResource("RectangleShape2D_kbweo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="controller/tower1/collision_detection" unique_id=418531361]
+position = Vector2(25, 1000)
+shape = SubResource("RectangleShape2D_kbweo")
+
+[node name="point_counter" type="Area2D" parent="controller/tower1" unique_id=64175484]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower1/point_counter" unique_id=1575932266]
+position = Vector2(55.5, 373.5)
+shape = SubResource("RectangleShape2D_pr35p")
+
+[node name="tower2" type="Node2D" parent="controller" unique_id=1896091854]
+position = Vector2(400, -350)
+
+[node name="ColorRect" type="ColorRect" parent="controller/tower2" unique_id=466101230]
+offset_top = 500.0
+offset_right = 50.0
+offset_bottom = 1500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="controller/tower2" unique_id=1248410763]
+offset_top = -750.0
+offset_right = 50.0
+offset_bottom = 250.0
+metadata/_edit_use_anchors_ = true
+
+[node name="tower_notifier" type="VisibleOnScreenNotifier2D" parent="controller/tower2" unique_id=323481592]
+rect = Rect2(-10, -369, 71, 1480)
+
+[node name="collision_detection" type="Area2D" parent="controller/tower2" unique_id=1391143571]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower2/collision_detection" unique_id=218993692]
+position = Vector2(25, -249)
+shape = SubResource("RectangleShape2D_kbweo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="controller/tower2/collision_detection" unique_id=1531974397]
+position = Vector2(25, 1000)
+shape = SubResource("RectangleShape2D_kbweo")
+
+[node name="point_counter" type="Area2D" parent="controller/tower2" unique_id=2004180064]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower2/point_counter" unique_id=461179651]
+position = Vector2(55.5, 373.5)
+shape = SubResource("RectangleShape2D_pr35p")
+
+[node name="tower3" type="Node2D" parent="controller" unique_id=162350409]
+position = Vector2(800, -350)
+
+[node name="ColorRect" type="ColorRect" parent="controller/tower3" unique_id=153126399]
+offset_top = 500.0
+offset_right = 50.0
+offset_bottom = 1500.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="controller/tower3" unique_id=645359397]
+offset_top = -750.0
+offset_right = 50.0
+offset_bottom = 250.0
+metadata/_edit_use_anchors_ = true
+
+[node name="tower_notifier" type="VisibleOnScreenNotifier2D" parent="controller/tower3" unique_id=1149687907]
+rect = Rect2(-10, -369, 71, 1480)
+
+[node name="collision_detection" type="Area2D" parent="controller/tower3" unique_id=98812346]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower3/collision_detection" unique_id=810490704]
+position = Vector2(25, -249)
+shape = SubResource("RectangleShape2D_kbweo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="controller/tower3/collision_detection" unique_id=1445352839]
+position = Vector2(25, 1000)
+shape = SubResource("RectangleShape2D_kbweo")
+
+[node name="point_counter" type="Area2D" parent="controller/tower3" unique_id=174398972]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower3/point_counter" unique_id=785159600]
+position = Vector2(55.5, 373.5)
+shape = SubResource("RectangleShape2D_pr35p")
+
+[node name="Bird" type="CharacterBody2D" parent="." unique_id=215800664]
+position = Vector2(206, 345)
+script = ExtResource("3_wp4xf")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Bird" unique_id=1367625242]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird" unique_id=1522671719]
+shape = SubResource("RectangleShape2D_u3gf8")
+
+[node name="Label" type="Label" parent="." unique_id=31362217]
+offset_left = 523.0
+offset_top = 4.0
+offset_right = 582.0
+offset_bottom = 27.0
+text = "Point: 0"
+
+[connection signal="screen_exited" from="controller/tower1/tower_notifier" to="controller" method="_on_tower_notifier_screen_exited" binds= [1]]
+[connection signal="body_entered" from="controller/tower1/collision_detection" to="." method="_on_collision_detection"]
+[connection signal="body_entered" from="controller/tower1/point_counter" to="." method="_on_point_counter"]
+[connection signal="screen_exited" from="controller/tower2/tower_notifier" to="controller" method="_on_tower_notifier_screen_exited" binds= [2]]
+[connection signal="body_entered" from="controller/tower2/collision_detection" to="." method="_on_collision_detection"]
+[connection signal="body_entered" from="controller/tower2/point_counter" to="." method="_on_point_counter"]
+[connection signal="screen_exited" from="controller/tower3/tower_notifier" to="controller" method="_on_tower_notifier_screen_exited" binds= [3]]
+[connection signal="body_entered" from="controller/tower3/collision_detection" to="." method="_on_collision_detection"]
+[connection signal="body_entered" from="controller/tower3/point_counter" to="." method="_on_point_counter"]
