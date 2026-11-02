@@ -5,6 +5,9 @@ this is a game made in godot inspired by flappy bird with some little twist.
 This is a game I created back when I was still learning.
 I’m now remaking it with more polished assets and code.
 
+## itch-io link
+https://ajo-subarjo.itch.io/veflap
+
 
 # control
 - use SPACE for make the bird jump
