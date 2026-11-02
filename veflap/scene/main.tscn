@@ -2,7 +2,19 @@
 
 [ext_resource type="Script" uid="uid://71l1iqmrkwvb" path="res://scripts/tower controller.gd" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://b1cuplv88gpt6" path="res://scripts/main.gd" id="1_v0l8b"]
+[ext_resource type="Texture2D" uid="uid://8exncnidljyg" path="res://assets/ornament/pipe.png" id="3_of57s"]
 [ext_resource type="Script" uid="uid://5e5y37k0suey" path="res://scripts/bird.gd" id="3_wp4xf"]
+[ext_resource type="Script" uid="uid://bnwfscgow0u1j" path="res://scripts/hostile.gd" id="4_brvut"]
+[ext_resource type="Texture2D" uid="uid://vhgx1cudvx8b" path="res://assets/bird render/wing_down.png" id="4_p1hux"]
+[ext_resource type="Texture2D" uid="uid://birdy8upwbl7j" path="res://assets/bird render/wing_up.png" id="5_of57s"]
+[ext_resource type="Texture2D" uid="uid://cotl4uq5lxw1n" path="res://assets/hostile bird/wing_down.png" id="5_p1hux"]
+[ext_resource type="Texture2D" uid="uid://8pd2bbgkpqqw" path="res://assets/bird render/idle.png" id="6_b5f6u"]
+[ext_resource type="Texture2D" uid="uid://dks8pkgywxfkr" path="res://assets/hostile bird/wing_up.png" id="6_of57s"]
+[ext_resource type="FontFile" uid="uid://bc0p1ydn0m83" path="res://assets/Bungee-Regular.ttf" id="8_k65ib"]
+[ext_resource type="AudioStream" uid="uid://bk6jem4xsoeqj" path="res://assets/cozy_fx_1.ogg" id="12_wscrc"]
+[ext_resource type="AudioStream" uid="uid://joakf8k1fowe" path="res://assets/cozy_fx_22.ogg" id="13_mswub"]
+[ext_resource type="PackedScene" uid="uid://c73a3cx4drf5h" path="res://scene/losescreen.tscn" id="14_hybxs"]
+[ext_resource type="Script" uid="uid://cfrwr6v7ldh7u" path="res://scripts/losescreen.gd" id="15_v2gmf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbweo"]
 size = Vector2(46, 992)
@@ -10,8 +22,47 @@ size = Vector2(46, 992)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr35p"]
 size = Vector2(40, 300)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3gf8"]
-size = Vector2(75, 75)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqoya"]
+radius = 22.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3gf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p1hux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_of57s")
+}],
+"loop": 0,
+"name": &"flapping",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_b5f6u")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7k7t"]
+size = Vector2(61, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqoya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_p1hux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_of57s")
+}],
+"loop": 1,
+"name": &"flapping",
+"speed": 8.0
+}]
 
 [node name="Main" type="Node2D" unique_id=167491325]
 script = ExtResource("1_v0l8b")
@@ -23,25 +74,13 @@ script = ExtResource("1_itxqv")
 [node name="tower1" type="Node2D" parent="controller" unique_id=2064782768]
 position = Vector2(0, -350)
 
-[node name="ColorRect" type="ColorRect" parent="controller/tower1" unique_id=2122564024]
-offset_top = 500.0
-offset_right = 50.0
-offset_bottom = 1500.0
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="controller/tower1" unique_id=685587293]
-offset_top = -750.0
-offset_right = 50.0
-offset_bottom = 250.0
-metadata/_edit_use_anchors_ = true
-
 [node name="tower_notifier" type="VisibleOnScreenNotifier2D" parent="controller/tower1" unique_id=21611157]
 rect = Rect2(-10, -369, 71, 1480)
 
 [node name="collision_detection" type="Area2D" parent="controller/tower1" unique_id=2144986111]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower1/collision_detection" unique_id=890324267]
-position = Vector2(25, -249)
+position = Vector2(25, -217)
 shape = SubResource("RectangleShape2D_kbweo")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="controller/tower1/collision_detection" unique_id=418531361]
@@ -51,23 +90,36 @@ shape = SubResource("RectangleShape2D_kbweo")
 [node name="point_counter" type="Area2D" parent="controller/tower1" unique_id=64175484]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower1/point_counter" unique_id=1575932266]
-position = Vector2(55.5, 373.5)
+position = Vector2(55.5, 390.5)
 shape = SubResource("RectangleShape2D_pr35p")
+
+[node name="Pipe" type="Sprite2D" parent="controller/tower1" unique_id=354230830]
+position = Vector2(24, 647)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_of57s")
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower1/Pipe" unique_id=624394148]
+position = Vector2(0, 1667.9998)
+scale = Vector2(1, 3.600775)
+texture = ExtResource("3_of57s")
+region_enabled = true
+region_rect = Rect2(0, 335.89087, 259, 688.10913)
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower1" unique_id=236896531]
+position = Vector2(25, 136)
+rotation = -3.1415927
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_of57s")
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower1/Pipe2" unique_id=712742021]
+position = Vector2(0, 1667.9998)
+scale = Vector2(1, 3.600775)
+texture = ExtResource("3_of57s")
+region_enabled = true
+region_rect = Rect2(0, 335.89087, 259, 688.10913)
 
 [node name="tower2" type="Node2D" parent="controller" unique_id=1896091854]
 position = Vector2(400, -350)
-
-[node name="ColorRect" type="ColorRect" parent="controller/tower2" unique_id=466101230]
-offset_top = 500.0
-offset_right = 50.0
-offset_bottom = 1500.0
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="controller/tower2" unique_id=1248410763]
-offset_top = -750.0
-offset_right = 50.0
-offset_bottom = 250.0
-metadata/_edit_use_anchors_ = true
 
 [node name="tower_notifier" type="VisibleOnScreenNotifier2D" parent="controller/tower2" unique_id=323481592]
 rect = Rect2(-10, -369, 71, 1480)
@@ -75,7 +127,7 @@ rect = Rect2(-10, -369, 71, 1480)
 [node name="collision_detection" type="Area2D" parent="controller/tower2" unique_id=1391143571]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower2/collision_detection" unique_id=218993692]
-position = Vector2(25, -249)
+position = Vector2(25, -217)
 shape = SubResource("RectangleShape2D_kbweo")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="controller/tower2/collision_detection" unique_id=1531974397]
@@ -85,23 +137,36 @@ shape = SubResource("RectangleShape2D_kbweo")
 [node name="point_counter" type="Area2D" parent="controller/tower2" unique_id=2004180064]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower2/point_counter" unique_id=461179651]
-position = Vector2(55.5, 373.5)
+position = Vector2(55.5, 390.5)
 shape = SubResource("RectangleShape2D_pr35p")
+
+[node name="Pipe" type="Sprite2D" parent="controller/tower2" unique_id=112343841]
+position = Vector2(24, 647)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_of57s")
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower2/Pipe" unique_id=1408555519]
+position = Vector2(0, 1667.9998)
+scale = Vector2(1, 3.600775)
+texture = ExtResource("3_of57s")
+region_enabled = true
+region_rect = Rect2(0, 335.89087, 259, 688.10913)
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower2" unique_id=1212343929]
+position = Vector2(25, 136)
+rotation = -3.1415927
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_of57s")
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower2/Pipe2" unique_id=1390447589]
+position = Vector2(0, 1667.9998)
+scale = Vector2(1, 3.600775)
+texture = ExtResource("3_of57s")
+region_enabled = true
+region_rect = Rect2(0, 335.89087, 259, 688.10913)
 
 [node name="tower3" type="Node2D" parent="controller" unique_id=162350409]
 position = Vector2(800, -350)
-
-[node name="ColorRect" type="ColorRect" parent="controller/tower3" unique_id=153126399]
-offset_top = 500.0
-offset_right = 50.0
-offset_bottom = 1500.0
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="controller/tower3" unique_id=645359397]
-offset_top = -750.0
-offset_right = 50.0
-offset_bottom = 250.0
-metadata/_edit_use_anchors_ = true
 
 [node name="tower_notifier" type="VisibleOnScreenNotifier2D" parent="controller/tower3" unique_id=1149687907]
 rect = Rect2(-10, -369, 71, 1480)
@@ -109,7 +174,7 @@ rect = Rect2(-10, -369, 71, 1480)
 [node name="collision_detection" type="Area2D" parent="controller/tower3" unique_id=98812346]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower3/collision_detection" unique_id=810490704]
-position = Vector2(25, -249)
+position = Vector2(25, -217)
 shape = SubResource("RectangleShape2D_kbweo")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="controller/tower3/collision_detection" unique_id=1445352839]
@@ -119,29 +184,118 @@ shape = SubResource("RectangleShape2D_kbweo")
 [node name="point_counter" type="Area2D" parent="controller/tower3" unique_id=174398972]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="controller/tower3/point_counter" unique_id=785159600]
-position = Vector2(55.5, 373.5)
+position = Vector2(55.5, 390.5)
 shape = SubResource("RectangleShape2D_pr35p")
 
+[node name="Pipe" type="Sprite2D" parent="controller/tower3" unique_id=1853628385]
+position = Vector2(24, 647)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_of57s")
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower3/Pipe" unique_id=426289354]
+position = Vector2(0, 1667.9998)
+scale = Vector2(1, 3.600775)
+texture = ExtResource("3_of57s")
+region_enabled = true
+region_rect = Rect2(0, 335.89087, 259, 688.10913)
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower3" unique_id=1459731999]
+position = Vector2(25, 136)
+rotation = -3.1415927
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_of57s")
+
+[node name="Pipe2" type="Sprite2D" parent="controller/tower3/Pipe2" unique_id=441886762]
+position = Vector2(0, 1667.9998)
+scale = Vector2(1, 3.600775)
+texture = ExtResource("3_of57s")
+region_enabled = true
+region_rect = Rect2(0, 335.89087, 259, 688.10913)
+
 [node name="Bird" type="CharacterBody2D" parent="." unique_id=215800664]
-position = Vector2(206, 345)
+position = Vector2(179, 197)
 script = ExtResource("3_wp4xf")
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Bird" unique_id=1367625242]
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="audio1" type="AudioStreamPlayer2D" parent="Bird" unique_id=1838958384]
+stream = ExtResource("12_wscrc")
+volume_db = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bird" unique_id=1522671719]
-shape = SubResource("RectangleShape2D_u3gf8")
+shape = SubResource("CircleShape2D_tqoya")
+
+[node name="bird_sprite" type="AnimatedSprite2D" parent="Bird" unique_id=1914035129]
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_u3gf8")
+animation = &"flapping"
+frame_progress = 1.0
 
 [node name="Label" type="Label" parent="." unique_id=31362217]
 offset_left = 523.0
 offset_top = 4.0
 offset_right = 582.0
 offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("8_k65ib")
+theme_override_font_sizes/font_size = 32
 text = "Point: 0"
+
+[node name="hostile_parent" type="Node2D" parent="." unique_id=1703816157]
+
+[node name="hostile" type="Node2D" parent="hostile_parent" unique_id=545230623]
+position = Vector2(1382, 102)
+script = ExtResource("4_brvut")
+metadata/_edit_group_ = true
+
+[node name="collision_detection" type="Area2D" parent="hostile_parent/hostile" unique_id=1005013685]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hostile_parent/hostile/collision_detection" unique_id=1987978767]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_s7k7t")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="hostile_parent/hostile" unique_id=1555260434]
+
+[node name="hostile_sprite" type="AnimatedSprite2D" parent="hostile_parent/hostile" unique_id=1008584143]
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_tqoya")
+animation = &"flapping"
+flip_h = true
+
+[node name="hostile2" type="Node2D" parent="hostile_parent" unique_id=1031530769]
+position = Vector2(2395, 511)
+script = ExtResource("4_brvut")
+metadata/_edit_group_ = true
+
+[node name="collision_detection" type="Area2D" parent="hostile_parent/hostile2" unique_id=2147242512]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hostile_parent/hostile2/collision_detection" unique_id=503107622]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_s7k7t")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="hostile_parent/hostile2" unique_id=1807935255]
+
+[node name="hostile_sprite" type="AnimatedSprite2D" parent="hostile_parent/hostile2" unique_id=752021898]
+scale = Vector2(0.075, 0.075)
+sprite_frames = SubResource("SpriteFrames_tqoya")
+animation = &"flapping"
+flip_h = true
+
+[node name="audio2" type="AudioStreamPlayer2D" parent="." unique_id=1625519641]
+stream = ExtResource("13_mswub")
+volume_db = 2.0
+
+[node name="losescreen" parent="." unique_id=2008913893 instance=ExtResource("14_hybxs")]
+custom_minimum_size = Vector2(1125, 600)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1278.0
+offset_right = 2430.0063
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("15_v2gmf")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
 
 [connection signal="screen_exited" from="controller/tower1/tower_notifier" to="controller" method="_on_tower_notifier_screen_exited" binds= [1]]
 [connection signal="body_entered" from="controller/tower1/collision_detection" to="." method="_on_collision_detection"]
@@ -152,3 +306,11 @@ text = "Point: 0"
 [connection signal="screen_exited" from="controller/tower3/tower_notifier" to="controller" method="_on_tower_notifier_screen_exited" binds= [3]]
 [connection signal="body_entered" from="controller/tower3/collision_detection" to="." method="_on_collision_detection"]
 [connection signal="body_entered" from="controller/tower3/point_counter" to="." method="_on_point_counter"]
+[connection signal="body_entered" from="hostile_parent/hostile/collision_detection" to="." method="_on_collision_detection"]
+[connection signal="screen_exited" from="hostile_parent/hostile/VisibleOnScreenNotifier2D" to="hostile_parent/hostile" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="hostile_parent/hostile2/collision_detection" to="." method="_on_collision_detection"]
+[connection signal="screen_exited" from="hostile_parent/hostile2/VisibleOnScreenNotifier2D" to="hostile_parent/hostile2" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="pressed" from="losescreen/HBoxContainer/VBoxContainer/play_again" to="losescreen" method="_on_play_again_pressed"]
+[connection signal="pressed" from="losescreen/HBoxContainer/VBoxContainer/quit" to="losescreen" method="_on_quit_pressed"]
+
+[editable path="losescreen"]

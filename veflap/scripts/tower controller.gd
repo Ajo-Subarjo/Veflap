@@ -28,7 +28,6 @@ func reset_tower(id):
 	node.position.x = start_pos
 	node.position.y = tower_position()
 
-
 func tower_position():
 	return randf_range(-450.0, 0.0)
 

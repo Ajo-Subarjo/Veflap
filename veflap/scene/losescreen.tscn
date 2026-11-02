@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://c73a3cx4drf5h"]
+
+[ext_resource type="FontFile" uid="uid://bc0p1ydn0m83" path="res://assets/Bungee-Regular.ttf" id="1_t7yit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8cin"]
+bg_color = Color(0.8901961, 0.5137255, 0.30980393, 0.7882353)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+shadow_color = Color(0.8023353, 0.5732027, 0.31097305, 0.7882353)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asdpo"]
+bg_color = Color(0.09411765, 0.13333334, 0.14509805, 0.8392157)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otbb4"]
+bg_color = Color(0.89138174, 0.51328117, 0.31147164, 0.7882353)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.8039216, 0.57254905, 0.30980393, 0.7882353)
+shadow_size = 1
+shadow_offset = Vector2(-2, -2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pswxg"]
+bg_color = Color(0.09411765, 0.13333334, 0.14509805, 0.8392157)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="losescreen" type="Control" unique_id=2008913893]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=311547278]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6750321, 0.88140357, 0.92020476, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=341293747]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1322010851]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Tittle" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1380501406]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2901961, 0.29803923, 0.29803923, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("1_t7yit")
+theme_override_font_sizes/font_size = 80
+text = "You Lose"
+horizontal_alignment = 1
+
+[node name="point" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1019802151]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2901961, 0.29803923, 0.29803923, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_t7yit")
+theme_override_font_sizes/font_size = 25
+text = "your point :"
+horizontal_alignment = 1
+
+[node name="play_again" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=178703611 groups=["button"]]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_t7yit")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r8cin")
+theme_override_styles/hover = SubResource("StyleBoxFlat_asdpo")
+text = "Play-Again"
+
+[node name="quit" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=2041480407 groups=["button"]]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_t7yit")
+theme_override_styles/normal = SubResource("StyleBoxFlat_otbb4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pswxg")
+text = "Quit"

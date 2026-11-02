@@ -1,12 +1,32 @@
 [gd_scene format=3 uid="uid://r4u0akt2qjfu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow7u8"]
-bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0.6509804)
+[ext_resource type="Script" uid="uid://ly6q3xwwovql" path="res://scripts/homescreen.gd" id="1_ofliv"]
+[ext_resource type="FontFile" uid="uid://bc0p1ydn0m83" path="res://assets/Bungee-Regular.ttf" id="1_ow7u8"]
+[ext_resource type="Texture2D" uid="uid://8pd2bbgkpqqw" path="res://assets/bird render/idle.png" id="1_q2k3v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2k3v"]
+bg_color = Color(0.8901961, 0.5137255, 0.30980393, 0.7882353)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+shadow_color = Color(0.8023353, 0.5732027, 0.31097305, 0.7882353)
+shadow_size = 1
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofliv"]
+bg_color = Color(0.09411765, 0.13333334, 0.14509805, 0.8392157)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lblqt"]
-bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0.6509804)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne5p8"]
+bg_color = Color(0.89138174, 0.51328117, 0.31147164, 0.7882353)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.8039216, 0.57254905, 0.30980393, 0.7882353)
+shadow_size = 1
+shadow_offset = Vector2(-2, -2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_viw1h"]
+bg_color = Color(0.09411765, 0.13333334, 0.14509805, 0.8392157)
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
@@ -17,6 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ofliv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2041441629]
 layout_mode = 1
@@ -32,22 +53,40 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
+[node name="Idle" type="Sprite2D" parent="HBoxContainer/VBoxContainer" unique_id=910439610]
+position = Vector2(181, -10)
+rotation = -0.20943953
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_q2k3v")
+
 [node name="Tittle" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=417396542]
 layout_mode = 2
-theme_override_font_sizes/font_size = 52
+theme_override_colors/font_outline_color = Color(0.2901961, 0.29803923, 0.29803923, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("1_ow7u8")
+theme_override_font_sizes/font_size = 80
 text = "VeFlap"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=202417223]
+[node name="play" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=867580837 groups=["button"]]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_ow7u8")
+theme_override_fonts/font = ExtResource("1_ow7u8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_q2k3v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ofliv")
 text = "Play"
 
-[node name="Button3" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=193916236]
+[node name="quit" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=110956551 groups=["button"]]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_lblqt")
+theme_override_fonts/font = ExtResource("1_ow7u8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ne5p8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_viw1h")
 text = "Quit"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
